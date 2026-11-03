@@ -149,7 +149,7 @@ export default function MainSite() {
                   <h3 className="text-2xl font-black mb-4" style={{color:"#0f1923"}}>What is Xero?</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">Xero is the leading cloud accounting platform for small and medium-sized businesses in the UK. It automates bookkeeping, bank reconciliation, invoicing, payroll and VAT — giving you real-time visibility of your finances from any device.</p>
                   <p className="text-gray-500 text-sm leading-relaxed mb-6">Unlike desktop software, Xero lives in the cloud — no installation, no backups, no version updates. Your accountant, bookkeeper and team all work from the same live data.</p>
-                  <a href="#contact" className="gbtn inline-block px-6 py-2.5 rounded-xl font-bold text-sm">Talk to Us About Xero</a>
+                  <Link href="/xero" className="gbtn inline-block px-6 py-2.5 rounded-xl font-bold text-sm">Talk to Us About Xero</Link>
                 </div>
                 <div className="space-y-3">
                   {["No installation required — access from any device","Real-time bank feeds and reconciliation","Automated invoicing and payment reminders","Full payroll and pension management","VAT returns submitted directly to HMRC","Add staff and control their access levels","Integrates with 1,000+ business apps"].map(b => (
