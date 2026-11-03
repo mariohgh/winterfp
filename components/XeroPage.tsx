@@ -36,13 +36,6 @@ const services = [
   },
 ];
 
-const certs = [
-  { t: "L1 Xero Certified Associate", d: "Core Xero features and workflows." },
-  { t: "L2 Xero Certified Professional", d: "Reporting, multi-currency and integrations." },
-  { t: "L3 Xero Certified Specialist", d: "Complex implementations and advisory." },
-  { t: "Xero Payroll Specialist", d: "UK payroll, auto-enrolment and RTI." },
-  { t: "Xero Migration Specialist", d: "Data migration from any platform." },
-];
 
 export default function XeroPage() {
   const [active, setActive] = useState(0);
@@ -184,24 +177,54 @@ export default function XeroPage() {
       {/* QUALIFICATIONS */}
       <div className="max-w-6xl mx-auto px-6 py-20">
         <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#c9a84c" }}>Credentials</p>
-        <h2 className="text-3xl font-black mb-3" style={{ color: "#0f1923" }}>Xero Qualifications</h2>
-        <p className="text-gray-500 text-sm mb-10 max-w-xl">Every certification is current and verified by Xero. Backed by FCCA qualification — real accounting knowledge, not just software training.</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {certs.map((c, i) => (
-            <div key={c.t} className="rounded-2xl p-6 border" style={{ borderColor: "#e8e4dc", background: "#fafaf9" }}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shrink-0" style={{ background: "rgba(19,181,234,0.12)", color: "#13B5EA" }}>{i + 1}</div>
-                <div className="font-black text-sm" style={{ color: "#0f1923" }}>{c.t}</div>
+        <h2 className="text-3xl font-black mb-3" style={{ color: "#0f1923" }}>Our Xero Certifications</h2>
+        <p className="text-gray-500 text-sm mb-12 max-w-2xl">All of our consultants hold the full stack of Xero certifications — from entry-level associate through to Migration Specialist and Payroll Specialist. Every certification is current, verified by Xero, and renewed annually. Backed by FCCA qualification, our team brings real accounting knowledge to every engagement, not just software training.</p>
+
+        {/* Certification badges — L1, L2, L3 */}
+        <div className="mb-10">
+          <p className="text-xs font-bold tracking-widest uppercase mb-5 text-gray-400">Xero Certification Badges</p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { level: "Level 1", name: "Xero Certified Associate", d: "Foundation-level certification. Our consultants understand core Xero features, workflows and best practices for client setup.", color: "#13B5EA" },
+              { level: "Level 2", name: "Xero Certified Professional", d: "Advanced certification covering reporting, multi-currency, integrations and more complex client scenarios.", color: "#13B5EA" },
+              { level: "Level 3", name: "Xero Certified Specialist", d: "Expert-level certification for complex implementations, advisory work and specialist client engagements.", color: "#13B5EA" },
+            ].map(c => (
+              <div key={c.level} className="rounded-2xl p-6 border bg-white" style={{ borderColor: "#e8e4dc" }}>
+                <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold mb-4" style={{ background: "rgba(19,181,234,0.1)", color: "#0a8ab5" }}>{c.level}</div>
+                <div className="font-black text-sm mb-2" style={{ color: "#0f1923" }}>{c.name}</div>
+                <p className="text-gray-500 text-xs leading-relaxed">{c.d}</p>
               </div>
-              <p className="text-gray-500 text-xs leading-snug pl-11">{c.d}</p>
-            </div>
-          ))}
-          <div className="rounded-2xl p-6 border" style={{ borderColor: "rgba(201,168,76,0.3)", background: "#fdf9f0" }}>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shrink-0" style={{ background: "rgba(201,168,76,0.2)", color: "#c9a84c" }}>★</div>
-              <div className="font-black text-sm" style={{ color: "#0f1923" }}>FCCA Qualified</div>
-            </div>
-            <p className="text-gray-500 text-xs leading-snug pl-11">Fellow of the Association of Chartered Certified Accountants — the accounting knowledge behind every implementation.</p>
+            ))}
+          </div>
+        </div>
+
+        {/* Specialist badges — real Xero PNGs */}
+        <div className="mb-10">
+          <p className="text-xs font-bold tracking-widest uppercase mb-5 text-gray-400">Xero Specialist Badges</p>
+          <p className="text-gray-500 text-sm mb-6 max-w-xl">Specialist badges are awarded by Xero for completing advanced courses in specific disciplines. Our team holds all three relevant to the services we offer.</p>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              { src: "/badges/migration-specialist.png", alt: "Xero Migration Specialist badge", label: "Migration Specialist", d: "Certified to migrate accounting data from any platform into Xero accurately and completely." },
+              { src: "/badges/payroll-specialist.png", alt: "Xero Payroll Specialist badge", label: "Payroll Specialist", d: "Certified in UK payroll setup, auto-enrolment, HMRC RTI and leave management within Xero." },
+              { src: "/badges/tax-specialist.png", alt: "Xero Tax Specialist badge", label: "Tax Specialist", d: "Certified in Xero tax workflows, VAT returns and compliance for UK businesses." },
+            ].map(b => (
+              <div key={b.label} className="rounded-2xl p-6 border bg-white flex flex-col items-start" style={{ borderColor: "#e8e4dc" }}>
+                <div className="mb-4 p-3 rounded-xl" style={{ background: "#f8f7f4" }}>
+                  <Image src={b.src} alt={b.alt} width={120} height={62} className="h-14 w-auto object-contain" />
+                </div>
+                <div className="font-black text-sm mb-1" style={{ color: "#0f1923" }}>{b.label}</div>
+                <p className="text-gray-500 text-xs leading-relaxed">{b.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FCCA */}
+        <div className="rounded-2xl p-6 border flex flex-col sm:flex-row items-start gap-5" style={{ borderColor: "rgba(201,168,76,0.3)", background: "#fdf9f0" }}>
+          <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg shrink-0" style={{ background: "rgba(201,168,76,0.2)", color: "#c9a84c" }}>★</div>
+          <div>
+            <div className="font-black text-sm mb-1" style={{ color: "#0f1923" }}>FCCA — Fellow Chartered Certified Accountant</div>
+            <p className="text-gray-500 text-xs leading-relaxed max-w-2xl">Our consultants are FCCA qualified — the highest membership grade of the Association of Chartered Certified Accountants. This means every Xero engagement is underpinned by deep accounting knowledge, not just software familiarity. We understand the numbers behind the system, not just the buttons.</p>
           </div>
         </div>
       </div>
