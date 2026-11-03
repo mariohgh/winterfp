@@ -117,6 +117,27 @@ export default function MainSite() {
         </div>
       </div>
 
+      {/* CREDENTIALS STRIP */}
+      <div className="border-b" style={{background:"#fff",borderColor:"#e8e4dc"}}>
+        <div className="max-w-7xl mx-auto px-6 py-10">
+          <p className="text-xs font-bold tracking-widest uppercase text-center mb-8 text-gray-400">Our Xero Certifications</p>
+          <div className="flex flex-wrap items-center justify-center gap-8">
+            <Image src="/badges/migration-specialist.png" alt="Xero Migration Specialist badge" width={120} height={62} className="h-14 w-auto object-contain" />
+            <Image src="/badges/payroll-specialist.png" alt="Xero Payroll Specialist badge" width={120} height={62} className="h-14 w-auto object-contain" />
+            <Image src="/badges/tax-specialist.png" alt="Xero Tax Specialist badge" width={120} height={62} className="h-14 w-auto object-contain" />
+            <div className="h-10 w-px hidden md:block" style={{background:"#e8e4dc"}} />
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-2xl font-black" style={{color:"#c9a84c"}}>L1–L3</span>
+              <span className="text-xs text-gray-400 font-medium">Xero Certified</span>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-2xl font-black" style={{color:"#c9a84c"}}>FCCA</span>
+              <span className="text-xs text-gray-400 font-medium">Qualified Accountant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* SERVICES */}
       <section id="services" className="py-28" style={{background:"#f8f7f4"}}>
         <div className="max-w-7xl mx-auto px-6">
