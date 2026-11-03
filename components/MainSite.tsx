@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,10 +18,21 @@ function useReveal() {
   return ref;
 }
 
-const platforms = ["Xero","Microsoft Dynamics 365","NetSuite","Oracle","FCCA Qualified","PRINCE2","UK Based","ERP Specialists","Xero","Microsoft Dynamics 365","NetSuite","Oracle","FCCA Qualified","PRINCE2","UK Based","ERP Specialists"];
+const platforms = ["Xero","Microsoft Dynamics 365","FCCA Qualified","PRINCE2","UK Based","ERP Specialists","Xero","Microsoft Dynamics 365","FCCA Qualified","PRINCE2","UK Based","ERP Specialists"];
+
+const xeroServices = [
+  { id:"setup", label:"Xero Basic Setup", desc:"We configure Xero from scratch — chart of accounts tailored to your business, bank feeds connected, invoice templates, tax rates and user permissions all set up correctly from day one. You get a clean, working system ready to use immediately.", bullets:["Chart of accounts setup","Bank feed connections","Invoice & quote templates","Tax rate configuration","User roles & permissions"] },
+  { id:"migration", label:"Xero Migration Service", desc:"Moving from Sage, QuickBooks, FreeAgent or spreadsheets? We handle the full migration — mapping your existing data, importing opening balances, historical transactions and contacts so nothing is lost in the move.", bullets:["Data mapping & cleansing","Opening balance import","Historical transaction transfer","Contacts & supplier migration","Post-migration reconciliation"] },
+  { id:"correction", label:"Xero Migration Correction", desc:"Inherited a Xero file that's a mess? We audit your existing setup, identify errors and fix them — reconciliation issues, duplicate contacts, incorrect tax codes, misposted transactions and chart of accounts problems.", bullets:["Full file audit","Reconciliation fixes","Duplicate contact cleanup","Tax code corrections","Chart of accounts restructure"] },
+  { id:"payroll", label:"Xero Payroll Setup", desc:"We set up Xero Payroll end-to-end — employee records, pay calendars, pension auto-enrolment, HMRC RTI submissions and leave policies. Fully compliant with UK payroll legislation.", bullets:["Employee records & pay rates","Pay calendar configuration","Auto-enrolment pension setup","HMRC RTI connection","Leave & holiday policies"] },
+  { id:"healthcheck", label:"Xero Health Check", desc:"A thorough review of your existing Xero file. We check reconciliation status, VAT setup, payroll accuracy, integrations and reporting — and give you a written report with prioritised recommendations.", bullets:["Bank reconciliation review","VAT return accuracy check","Payroll compliance audit","Integration health check","Written recommendations report"] },
+];
 
 export default function MainSite() {
   const ref = useReveal();
+  const [xeroTab, setXeroTab] = useState("setup");
+  const active = xeroServices.find(s => s.id === xeroTab)!;
+
   return (
     <div ref={ref} className="min-h-screen overflow-x-hidden" style={{background:"#0f1923",color:"#fff"}}>
       <style>{`
@@ -42,6 +53,7 @@ export default function MainSite() {
         .gbtn:active{transform:scale(0.97);}
         .card{transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),box-shadow 0.3s;}
         .card:hover{transform:translateY(-5px);box-shadow:0 24px 60px -12px rgba(201,168,76,0.18);}
+        .stab{transition:background 0.2s,color 0.2s,border-color 0.2s;}
       `}</style>
 
       <header className="fixed top-0 inset-x-0 z-50 border-b" style={{background:"rgba(15,25,35,0.85)",backdropFilter:"blur(16px)",borderColor:"rgba(201,168,76,0.1)"}}>
@@ -64,7 +76,7 @@ export default function MainSite() {
           <div>
             <div data-r className="inline-flex items-center gap-2 border rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-8" style={{color:"#c9a84c",borderColor:"rgba(201,168,76,0.3)"}}>ERP &amp; Accounting Consultancy</div>
             <h1 data-r data-d="1" className="text-5xl lg:text-6xl font-black leading-[1.08] tracking-tight mb-6">Finance Systems<br /><span style={{color:"#c9a84c"}}>That Actually</span><br />Work For You</h1>
-            <p data-r data-d="2" className="text-gray-400 text-lg leading-relaxed mb-10 max-w-lg">Expert implementation of <strong className="text-white">Xero</strong>, <strong className="text-white">Microsoft Dynamics 365</strong> and <strong className="text-white">NetSuite</strong> — by a qualified accountant who has used these systems, not just sold them.</p>
+            <p data-r data-d="2" className="text-gray-400 text-lg leading-relaxed mb-10 max-w-lg">Expert implementation of <strong className="text-white">Xero</strong> and <strong className="text-white">Microsoft Dynamics 365</strong> — by a qualified accountant who has used these systems, not just sold them.</p>
             <div data-r data-d="3" className="flex flex-col sm:flex-row gap-4">
               <a href="#contact" className="gbtn px-8 py-3.5 rounded-xl font-bold text-sm text-center">Book a Free Consultation</a>
               <a href="#services" className="px-8 py-3.5 rounded-xl font-semibold text-sm border text-center hover:bg-white/5 transition-colors" style={{borderColor:"rgba(201,168,76,0.3)",color:"#c9a84c"}}>Our Services</a>
@@ -74,8 +86,8 @@ export default function MainSite() {
             {[
               {v:"Xero",l:"Full Stack Certified",s:"L1 Associate → Migration Specialist"},
               {v:"D365",l:"Microsoft Dynamics",s:"Finance, Operations & CRM"},
-              {v:"NetSuite",l:"Oracle Certified",s:"Administrator & Financial User"},
               {v:"FCCA",l:"Qualified Accountant",s:"PRINCE2 · FMVA · 10yrs experience"},
+              {v:"UK",l:"Based in the UK",s:"Serving clients across Great Britain"},
             ].map((c) => (
               <div key={c.v} className="card rounded-2xl p-6 border" style={{background:"rgba(255,255,255,0.04)",borderColor:"rgba(201,168,76,0.12)"}}>
                 <div className="text-2xl font-black mb-1" style={{color:"#c9a84c"}}>{c.v}</div>
@@ -103,25 +115,73 @@ export default function MainSite() {
         <div className="max-w-7xl mx-auto px-6">
           <div data-r className="text-xs font-bold tracking-widest uppercase mb-4" style={{color:"#c9a84c"}}>What We Do</div>
           <h2 data-r data-d="1" className="text-4xl lg:text-5xl font-black tracking-tight mb-4" style={{color:"#0f1923"}}>The Right System,<br />Implemented Properly</h2>
-          <p data-r data-d="2" className="text-gray-500 text-lg mb-16 max-w-xl">Three platforms. Deep expertise on each. No generalists, no guesswork.</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {title:"Xero",logo:"/xero.svg",logoW:80,desc:"Full implementation from scratch — chart of accounts, bank feeds, payroll, integrations and staff training. Certified at every level including Migration Specialist.",tags:["Migration","Payroll","Training"]},
-              {title:"Microsoft Dynamics 365",logo:"/d365.svg",logoW:110,desc:"ERP and CRM implementation for growing businesses. Finance, operations and sales connected in one platform with real-time reporting.",tags:["Finance","Operations","CRM"]},
-              {title:"NetSuite",logo:"/netsuite.svg",logoW:100,desc:"Oracle NetSuite implementation and ongoing support. Certified Administrator with hands-on experience across multi-entity and international deployments.",tags:["ERP","Multi-entity","Reporting"]},
-            ].map((s,i) => (
-              <div key={s.title} data-r data-d={String(i+1)} className="card rounded-2xl p-8 flex flex-col border bg-white" style={{borderColor:"#e8e4dc"}}>
-                <div className="h-10 mb-6 flex items-center">
-                  <Image src={s.logo} alt={s.title} width={s.logoW} height={36} className="h-8 w-auto object-contain" />
-                </div>
-                <h3 className="text-xl font-black mb-3" style={{color:"#0f1923"}}>{s.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-6">{s.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {s.tags.map(t => <span key={t} className="text-xs font-medium px-3 py-1 rounded-full" style={{background:"#f0ece4",color:"#4a5568"}}>{t}</span>)}
-                </div>
-                <a href="#contact" className="text-sm font-bold flex items-center gap-1.5 hover:gap-3 transition-all" style={{color:"#c9a84c"}}>Get in touch →</a>
+          <p data-r data-d="2" className="text-gray-500 text-lg mb-20 max-w-xl">Two platforms. Deep expertise on each. No generalists, no guesswork.</p>
+
+          {/* XERO */}
+          <div data-r className="mb-20">
+            <div className="flex items-center gap-4 mb-2">
+              <Image src="/xero.svg" alt="Xero" width={90} height={36} className="h-9 w-auto object-contain" />
+            </div>
+            <p className="text-gray-500 text-sm mb-1 max-w-2xl">Cloud accounting software for small and medium-sized businesses. We are certified at every level — from basic setup through to complex migrations and payroll.</p>
+
+            <div className="mt-6 rounded-2xl border overflow-hidden bg-white" style={{borderColor:"#e8e4dc"}}>
+              <div className="flex flex-wrap border-b" style={{borderColor:"#e8e4dc"}}>
+                {xeroServices.map(s => (
+                  <button
+                    key={s.id}
+                    onClick={() => setXeroTab(s.id)}
+                    className="stab px-5 py-3.5 text-sm font-semibold border-b-2 -mb-px"
+                    style={{
+                      borderBottomColor: xeroTab === s.id ? "#c9a84c" : "transparent",
+                      color: xeroTab === s.id ? "#c9a84c" : "#6b7280",
+                      background: xeroTab === s.id ? "#fdf9f0" : "transparent",
+                    }}
+                  >
+                    {s.label}
+                  </button>
+                ))}
               </div>
-            ))}
+              <div className="p-8 grid md:grid-cols-2 gap-8 items-start">
+                <div>
+                  <h3 className="text-xl font-black mb-3" style={{color:"#0f1923"}}>{active.label}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-6">{active.desc}</p>
+                  <a href="#contact" className="gbtn inline-block px-6 py-2.5 rounded-xl font-bold text-sm">Get in Touch</a>
+                </div>
+                <ul className="space-y-3">
+                  {active.bullets.map(b => (
+                    <li key={b} className="flex items-start gap-3 text-sm text-gray-700">
+                      <span className="mt-0.5 text-base leading-none" style={{color:"#c9a84c"}}>✓</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-2xl border p-6 bg-white" style={{borderColor:"#e8e4dc"}}>
+              <div className="text-xs font-bold tracking-widest uppercase mb-4" style={{color:"#c9a84c"}}>Xero Certifications</div>
+              <div className="flex flex-wrap gap-3">
+                {["L1 Xero Certified Associate","L2 Xero Certified Professional","L3 Xero Certified Specialist","Xero Payroll Specialist","Xero Migration Specialist"].map(x => (
+                  <span key={x} className="text-xs font-medium px-3 py-1.5 rounded-full border" style={{background:"#fdf9f0",borderColor:"rgba(201,168,76,0.3)",color:"#92742a"}}>{x}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* D365 */}
+          <div data-r data-d="1">
+            <div className="flex items-center gap-4 mb-2">
+              <Image src="/d365.svg" alt="Microsoft Dynamics 365" width={130} height={36} className="h-9 w-auto object-contain" />
+            </div>
+            <p className="text-gray-500 text-sm mb-6 max-w-2xl">ERP and CRM for growing businesses. Finance, operations and sales connected in one platform with real-time reporting.</p>
+            <div className="rounded-2xl border p-8 bg-white" style={{borderColor:"#e8e4dc"}}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-2 h-2 rounded-full" style={{background:"#c9a84c"}} />
+                <span className="text-xs font-bold tracking-widest uppercase text-gray-400">Coming Soon</span>
+              </div>
+              <p className="text-gray-500 text-sm leading-relaxed max-w-xl">Our Microsoft Dynamics 365 service pages are being finalised. In the meantime, get in touch directly to discuss your D365 requirements — implementation, configuration, finance module setup and reporting.</p>
+              <a href="#contact" className="gbtn inline-block mt-6 px-6 py-2.5 rounded-xl font-bold text-sm">Enquire About D365</a>
+            </div>
           </div>
         </div>
       </section>
@@ -135,7 +195,7 @@ export default function MainSite() {
               <div className="w-14 h-14 rounded-full flex items-center justify-center font-black text-lg border-2" style={{background:"rgba(201,168,76,0.1)",borderColor:"rgba(201,168,76,0.3)",color:"#c9a84c"}}>EW</div>
               <div>
                 <div className="text-white font-bold text-lg">Erik Winter</div>
-                <div className="text-sm" style={{color:"#c9a84c"}}>FCCA · PRINCE2 · FMVA · NetSuite Certified</div>
+                <div className="text-sm" style={{color:"#c9a84c"}}>FCCA · PRINCE2 · FMVA · Xero Certified</div>
               </div>
             </div>
             <p data-r data-d="3" className="text-gray-400 leading-relaxed mb-4">An all-round accountant — Management &amp; Financial — with a passion for systems implementation. Erik has held senior finance roles at <strong className="text-white">Richard Mille</strong>, <strong className="text-white">Dover Street Market</strong> and <strong className="text-white">Tomorrow London</strong> before moving into full-time ERP consultancy.</p>
@@ -149,7 +209,7 @@ export default function MainSite() {
             <div className="rounded-2xl p-6 border" style={{background:"rgba(255,255,255,0.03)",borderColor:"rgba(201,168,76,0.12)"}}>
               <div className="text-xs font-bold tracking-widest uppercase mb-4 text-gray-500">Qualifications</div>
               <div className="grid grid-cols-2 gap-3">
-                {[{v:"FCCA",s:"Fellow Chartered Certified Accountant"},{v:"PRINCE2",s:"Foundation & Practitioner"},{v:"FMVA",s:"Financial Modeling & Valuation Analyst"},{v:"NetSuite",s:"Admin · SuiteFoundation · Financial User"}].map(c => (
+                {[{v:"FCCA",s:"Fellow Chartered Certified Accountant"},{v:"PRINCE2",s:"Foundation & Practitioner"},{v:"FMVA",s:"Financial Modeling & Valuation Analyst"},{v:"Xero",s:"Full Stack Certified — L1 to Migration"}].map(c => (
                   <div key={c.v} className="rounded-xl p-3" style={{background:"rgba(255,255,255,0.04)"}}>
                     <div className="font-black text-sm mb-0.5" style={{color:"#c9a84c"}}>{c.v}</div>
                     <div className="text-gray-400 text-xs leading-snug">{c.s}</div>
@@ -228,7 +288,6 @@ export default function MainSite() {
                   <option value="">Select a platform...</option>
                   <option>Xero</option>
                   <option>Microsoft Dynamics 365</option>
-                  <option>NetSuite</option>
                   <option>Not sure yet</option>
                 </select>
               </div>
