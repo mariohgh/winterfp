@@ -93,6 +93,10 @@ export default function XeroPage() {
         .gbtn:active { transform: scale(0.97); }
         .svc-btn { transition: background 0.15s, border-color 0.15s, color 0.15s; }
         .svc-btn:hover { background: #fdf9f0; }
+        .badge-card { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; }
+        .badge-card:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 20px 50px -10px rgba(19,181,234,0.25); }
+        .badge-card:hover img { filter: drop-shadow(0 0 10px rgba(19,181,234,0.5)); }
+        .badge-img { transition: filter 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
         @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
         .fade-up { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
         .fade-up-1 { animation-delay: 0.05s; }
@@ -289,7 +293,7 @@ export default function XeroPage() {
                   { src: "/badges/payroll-specialist.png", alt: "Xero Payroll Specialist", label: "Payroll Specialist", d: "UK payroll, auto-enrolment, HMRC RTI and leave management within Xero." },
                   { src: "/badges/tax-specialist.png", alt: "Xero Tax Specialist", label: "Tax Specialist", d: "Xero tax workflows, VAT returns and compliance for UK businesses." },
                 ].map(b => (
-                  <div key={b.label} className="flex items-center gap-6 rounded-2xl border p-5" style={{ borderColor: "rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
+                  <div key={b.label} className="badge-card flex items-center gap-6 rounded-2xl border p-5 cursor-default" style={{ borderColor: "rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
                     <div className="shrink-0 rounded-xl flex items-center justify-center p-3" style={{ background: "#fff", minWidth: 80 }}>
                       <Image src={b.src} alt={b.alt} width={110} height={56} className="h-12 w-auto object-contain" />
                     </div>
