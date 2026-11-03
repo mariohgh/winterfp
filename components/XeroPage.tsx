@@ -138,7 +138,7 @@ export default function XeroPage() {
 
               {/* Credential pills */}
               <div className="fade-up fade-up-3 flex flex-wrap gap-2 mb-10">
-                {["Xero Certified","FCCA Qualified","UK Based","Multi-Sector","HMRC Compliant","10+ Years Experience"].map(t => (
+                {["Xero Certified","UK Based","Multi-Sector","HMRC Compliant"].map(t => (
                   <span key={t} className="text-xs font-semibold px-3 py-1.5 rounded-full border" style={{ borderColor: "#e8e4dc", color: "#374151", background: "#fff" }}>{t}</span>
                 ))}
               </div>
@@ -152,8 +152,6 @@ export default function XeroPage() {
             {/* Stats — animated count-up */}
             <div ref={statsRef} className="fade-up fade-up-2 flex flex-col gap-8 lg:items-end pb-1">
               <StatBlock value={5} suffix="+" label="Xero Certifications" started={statsStarted} />
-              <div className="shimmer-line w-12 h-px" style={{ background: "#c9a84c" }} />
-              <StatBlock value={10} suffix="+" label="Years Experience" started={statsStarted} />
               <div className="shimmer-line w-12 h-px" style={{ background: "#c9a84c" }} />
               <StatBlock value={100} suffix="%" label="UK HMRC Compliant" started={statsStarted} />
             </div>
