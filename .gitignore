@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+public/xero/
+public/Level 1 Certification.pdf
+public/Level 2 Certification.pdf
+public/Level 3 Certification.pdf
