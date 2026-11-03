@@ -198,19 +198,31 @@ export default function MainSite() {
             {/* Tab: Qualifications */}
             {xeroTab === 2 && (
               <div className="rounded-b-2xl rounded-tr-2xl border border-t-0 bg-white p-8" style={{borderColor:"#e8e4dc"}}>
-                <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-2xl">Erik holds the full stack of Xero certifications — from entry-level associate through to Migration Specialist and Payroll Specialist. This means every engagement is backed by verified, up-to-date Xero expertise.</p>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-2xl">Our consultants hold the full stack of Xero certifications — from entry-level associate through to Migration, Payroll and Tax Specialist. Every certification is current, verified by Xero, and renewed annually.</p>
+                <div className="grid sm:grid-cols-3 gap-4 mb-6">
                   {[
                     {t:"L1 Xero Certified Associate", d:"Foundation-level certification covering core Xero features and workflows."},
                     {t:"L2 Xero Certified Professional", d:"Advanced certification covering reporting, multi-currency and integrations."},
                     {t:"L3 Xero Certified Specialist", d:"Expert-level certification for complex implementations and advisory."},
-                    {t:"Xero Payroll Specialist", d:"Certified in UK payroll, auto-enrolment, RTI and leave management."},
-                    {t:"Xero Migration Specialist", d:"Certified to migrate data from any platform into Xero accurately."},
                   ].map(c => (
                     <div key={c.t} className="svc-card rounded-xl p-5 border" style={{borderColor:"#e8e4dc"}}>
                       <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3 text-sm font-black" style={{background:"rgba(19,181,234,0.1)",color:"#13B5EA"}}>✓</div>
                       <div className="font-black text-sm mb-1" style={{color:"#0f1923"}}>{c.t}</div>
                       <div className="text-gray-500 text-xs leading-snug">{c.d}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {[
+                    {src:"/badges/migration-specialist.png", alt:"Xero Migration Specialist badge", d:"Certified to migrate data from any platform into Xero accurately."},
+                    {src:"/badges/payroll-specialist.png", alt:"Xero Payroll Specialist badge", d:"Certified in UK payroll, auto-enrolment, RTI and leave management."},
+                    {src:"/badges/tax-specialist.png", alt:"Xero Tax Specialist badge", d:"Certified in Xero tax workflows, VAT returns and UK compliance."},
+                  ].map(b => (
+                    <div key={b.alt} className="svc-card rounded-xl p-5 border flex flex-col items-start" style={{borderColor:"#e8e4dc"}}>
+                      <div className="mb-3 p-2 rounded-lg" style={{background:"#f8f7f4"}}>
+                        <Image src={b.src} alt={b.alt} width={100} height={52} className="h-12 w-auto object-contain" />
+                      </div>
+                      <div className="text-gray-500 text-xs leading-snug">{b.d}</div>
                     </div>
                   ))}
                 </div>
