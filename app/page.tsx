@@ -31,7 +31,7 @@ export default function Home() {
       <div className="glow absolute pointer-events-none" style={{top:"10%",left:"20%",width:"60%",height:"50%",background:"radial-gradient(ellipse,rgba(201,168,76,0.08) 0%,transparent 70%)"}} />
 
       <div className="relative flex flex-col items-center text-center max-w-md w-full">
-        <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={160} height={46} className="h-12 w-auto object-contain mb-10" />
+        <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={260} height={74} className="h-20 w-auto object-contain mb-10" />
 
         <div className="inline-flex items-center gap-2 border rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6" style={{color:"#c9a84c",borderColor:"rgba(201,168,76,0.3)"}}>
           Under Construction

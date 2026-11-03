@@ -46,7 +46,7 @@ export default function MainSite() {
 
       <header className="fixed top-0 inset-x-0 z-50 border-b" style={{background:"rgba(15,25,35,0.85)",backdropFilter:"blur(16px)",borderColor:"rgba(201,168,76,0.1)"}}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={140} height={40} className="h-9 w-auto object-contain" />
+          <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={220} height={60} className="h-14 w-auto object-contain" />
           <nav className="hidden md:flex items-center gap-8 text-sm text-gray-400 font-medium">
             {["#services","#about","#process","#contact"].map((h,i) => (
               <a key={h} href={h} className="hover:text-white transition-colors">{["Services","About","Process","Contact"][i]}</a>
@@ -244,7 +244,7 @@ export default function MainSite() {
 
       <footer className="py-10 border-t" style={{background:"#080e14",borderColor:"rgba(201,168,76,0.1)"}}>
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={120} height={34} className="h-8 w-auto object-contain" />
+          <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={180} height={50} className="h-12 w-auto object-contain" />
           <nav className="flex flex-wrap gap-6 text-sm text-gray-500">
             {[["#services","Services"],["#about","About"],["#process","Process"],["#contact","Contact"],["/privacy","Privacy Policy"]].map(([h,l]) => (
               <Link key={h} href={h} className="hover:text-white transition-colors">{l}</Link>
