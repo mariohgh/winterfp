@@ -60,15 +60,16 @@ export default function MainSite() {
       `}</style>
 
       {/* NAV */}
-      <header className="fixed top-0 inset-x-0 z-50 border-b" style={{background:"rgba(15,25,35,0.85)",backdropFilter:"blur(16px)",borderColor:"rgba(201,168,76,0.1)"}}>
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={220} height={60} className="h-14 w-auto object-contain" />
-          <nav className="hidden md:flex items-center gap-8 text-sm text-gray-400 font-medium">
-            {["#services","#about","#process","#contact"].map((h,i) => (
-              <a key={h} href={h} className="hover:text-white transition-colors">{["Services","About","Process","Contact"][i]}</a>
+      <header className="fixed top-0 inset-x-0 z-50" style={{background:"rgba(10,17,26,0.92)",backdropFilter:"blur(20px)",borderBottom:"1px solid rgba(201,168,76,0.08)"}}>
+        <div className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between gap-8">
+          <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={220} height={60} className="h-14 w-auto object-contain shrink-0" />
+          <nav className="hidden md:flex items-center gap-1 text-sm font-medium flex-1 justify-center">
+            {([["#services","Services"],["#about","About"],["#process","Process"],["#contact","Contact"]] as [string,string][]).map(([h,l]) => (
+              <a key={h} href={h} className="px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all">{l}</a>
             ))}
+            <Link href="/xero" className="px-4 py-2 rounded-lg font-semibold transition-all hover:bg-[#13B5EA]/10" style={{color:"#13B5EA"}}>Xero</Link>
           </nav>
-          <a href="#contact" className="gbtn px-5 py-2 rounded-lg text-sm font-semibold">Get in Touch</a>
+          <a href="#contact" className="gbtn shrink-0 px-5 py-2.5 rounded-full text-sm font-bold tracking-wide">Get in Touch</a>
         </div>
       </header>
 
@@ -85,6 +86,7 @@ export default function MainSite() {
             <div data-r data-d="3" className="flex flex-col sm:flex-row gap-4">
               <a href="#contact" className="gbtn px-8 py-3.5 rounded-xl font-bold text-sm text-center">Book a Free Consultation</a>
               <a href="#services" className="px-8 py-3.5 rounded-xl font-semibold text-sm border text-center hover:bg-white/5 transition-colors" style={{borderColor:"rgba(201,168,76,0.3)",color:"#c9a84c"}}>Our Services</a>
+              <Link href="/xero" className="px-8 py-3.5 rounded-xl font-semibold text-sm border text-center hover:bg-[#13B5EA]/10 transition-colors" style={{borderColor:"rgba(19,181,234,0.3)",color:"#13B5EA"}}>Explore Xero →</Link>
             </div>
           </div>
           <div data-r data-d="2" className="grid grid-cols-2 gap-4 float">
@@ -379,7 +381,7 @@ export default function MainSite() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={180} height={50} className="h-12 w-auto object-contain" />
           <nav className="flex flex-wrap gap-6 text-sm text-gray-500">
-            {[["#services","Services"],["#about","About"],["#process","Process"],["#contact","Contact"],["/privacy","Privacy Policy"]].map(([h,l]) => (
+            {([["#services","Services"],["#about","About"],["#process","Process"],["#contact","Contact"],["/xero","Xero"],["/privacy","Privacy Policy"]] as [string,string][]).map(([h,l]) => (
               <Link key={h} href={h} className="hover:text-white transition-colors">{l}</Link>
             ))}
           </nav>
