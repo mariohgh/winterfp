@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #1a2332;
+  --navy-light: #243044;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --slate: #4a5568;
+  --off-white: #f8f7f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1a2332;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
