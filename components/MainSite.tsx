@@ -28,6 +28,7 @@ const xeroServices = [
   { label:"Xero Migration Correction", desc:"Inherited a messy Xero file? We audit your setup, identify errors and fix them — reconciliation issues, duplicate contacts, incorrect tax codes and misposted transactions.", bullets:["Full file audit","Reconciliation fixes","Duplicate contact cleanup","Tax code corrections","Chart of accounts restructure"] },
   { label:"Xero Payroll Setup", desc:"We set up Xero Payroll end-to-end — employee records, pay calendars, pension auto-enrolment, HMRC RTI submissions and leave policies. Fully UK compliant.", bullets:["Employee records & pay rates","Pay calendar configuration","Auto-enrolment pension setup","HMRC RTI connection","Leave & holiday policies"] },
   { label:"Xero Health Check", desc:"A thorough review of your existing Xero file. We check reconciliation, VAT setup, payroll accuracy and integrations — and give you a written report with recommendations.", bullets:["Bank reconciliation review","VAT return accuracy check","Payroll compliance audit","Integration health check","Written recommendations report"] },
+  { label:"E-Commerce Setup", desc:"We connect your online store to Xero so every sale, refund and fee posts automatically — no manual entry. Works with Shopify, WooCommerce, Stripe and more, with correct VAT treatment throughout.", bullets:["Shopify / WooCommerce integration","Stripe & payment gateway sync","Automated sales & refund posting","Correct VAT treatment per channel","Multi-currency reconciliation","Real-time revenue reporting"] },
 ];
 
 export default function MainSite() {
@@ -171,7 +172,7 @@ export default function MainSite() {
             {/* Tab: Our Services */}
             {xeroTab === 1 && (
               <div className="border border-t-0 bg-white rounded-b-2xl rounded-tr-2xl overflow-hidden" style={{borderColor:"#e8e4dc"}}>
-                <div className="grid md:grid-cols-3 lg:grid-cols-5 border-b" style={{borderColor:"#e8e4dc"}}>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border-b" style={{borderColor:"#e8e4dc"}}>
                   {xeroServices.map((s,i) => (
                     <button key={s.label} onClick={() => setXeroService(i)}
                       className="px-4 py-4 text-xs font-semibold text-left border-r last:border-r-0 transition-colors"

@@ -34,6 +34,12 @@ const services = [
     desc: "A thorough review of your existing Xero file. We check reconciliation, VAT setup, payroll accuracy and integrations — and give you a written report with prioritised recommendations.",
     bullets: ["Bank reconciliation review","VAT return accuracy check","Payroll compliance audit","Integration health check","User access review","Written recommendations report"],
   },
+  {
+    label: "E-Commerce Setup",
+    tag: "Online stores",
+    desc: "We connect your online store to Xero so every sale, refund and fee posts automatically — no manual entry. Works with Shopify, WooCommerce, Stripe and more, with correct VAT treatment throughout.",
+    bullets: ["Shopify / WooCommerce integration","Stripe & payment gateway sync","Automated sales & refund posting","Correct VAT treatment per channel","Multi-currency reconciliation","Real-time revenue reporting"],
+  },
 ];
 
 function useCountUp(target: number, duration = 1800, start = false) {
