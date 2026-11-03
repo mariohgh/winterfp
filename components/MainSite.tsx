@@ -20,18 +20,20 @@ function useReveal() {
 
 const platforms = ["Xero","Microsoft Dynamics 365","FCCA Qualified","PRINCE2","UK Based","ERP Specialists","Xero","Microsoft Dynamics 365","FCCA Qualified","PRINCE2","UK Based","ERP Specialists"];
 
+const xeroTabs = ["What is Xero?", "Our Services", "Qualifications"];
+
 const xeroServices = [
-  { id:"setup", label:"Xero Basic Setup", desc:"We configure Xero from scratch — chart of accounts tailored to your business, bank feeds connected, invoice templates, tax rates and user permissions all set up correctly from day one. You get a clean, working system ready to use immediately.", bullets:["Chart of accounts setup","Bank feed connections","Invoice & quote templates","Tax rate configuration","User roles & permissions"] },
-  { id:"migration", label:"Xero Migration Service", desc:"Moving from Sage, QuickBooks, FreeAgent or spreadsheets? We handle the full migration — mapping your existing data, importing opening balances, historical transactions and contacts so nothing is lost in the move.", bullets:["Data mapping & cleansing","Opening balance import","Historical transaction transfer","Contacts & supplier migration","Post-migration reconciliation"] },
-  { id:"correction", label:"Xero Migration Correction", desc:"Inherited a Xero file that's a mess? We audit your existing setup, identify errors and fix them — reconciliation issues, duplicate contacts, incorrect tax codes, misposted transactions and chart of accounts problems.", bullets:["Full file audit","Reconciliation fixes","Duplicate contact cleanup","Tax code corrections","Chart of accounts restructure"] },
-  { id:"payroll", label:"Xero Payroll Setup", desc:"We set up Xero Payroll end-to-end — employee records, pay calendars, pension auto-enrolment, HMRC RTI submissions and leave policies. Fully compliant with UK payroll legislation.", bullets:["Employee records & pay rates","Pay calendar configuration","Auto-enrolment pension setup","HMRC RTI connection","Leave & holiday policies"] },
-  { id:"healthcheck", label:"Xero Health Check", desc:"A thorough review of your existing Xero file. We check reconciliation status, VAT setup, payroll accuracy, integrations and reporting — and give you a written report with prioritised recommendations.", bullets:["Bank reconciliation review","VAT return accuracy check","Payroll compliance audit","Integration health check","Written recommendations report"] },
+  { label:"Xero Basic Setup", desc:"We configure Xero from scratch — chart of accounts, bank feeds, invoice templates, tax rates and user permissions set up correctly from day one.", bullets:["Chart of accounts setup","Bank feed connections","Invoice & quote templates","Tax rate configuration","User roles & permissions"] },
+  { label:"Xero Migration Service", desc:"Moving from Sage, QuickBooks, FreeAgent or spreadsheets? We handle the full migration — mapping data, importing opening balances, historical transactions and contacts.", bullets:["Data mapping & cleansing","Opening balance import","Historical transaction transfer","Contacts & supplier migration","Post-migration reconciliation"] },
+  { label:"Xero Migration Correction", desc:"Inherited a messy Xero file? We audit your setup, identify errors and fix them — reconciliation issues, duplicate contacts, incorrect tax codes and misposted transactions.", bullets:["Full file audit","Reconciliation fixes","Duplicate contact cleanup","Tax code corrections","Chart of accounts restructure"] },
+  { label:"Xero Payroll Setup", desc:"We set up Xero Payroll end-to-end — employee records, pay calendars, pension auto-enrolment, HMRC RTI submissions and leave policies. Fully UK compliant.", bullets:["Employee records & pay rates","Pay calendar configuration","Auto-enrolment pension setup","HMRC RTI connection","Leave & holiday policies"] },
+  { label:"Xero Health Check", desc:"A thorough review of your existing Xero file. We check reconciliation, VAT setup, payroll accuracy and integrations — and give you a written report with recommendations.", bullets:["Bank reconciliation review","VAT return accuracy check","Payroll compliance audit","Integration health check","Written recommendations report"] },
 ];
 
 export default function MainSite() {
   const ref = useReveal();
-  const [xeroTab, setXeroTab] = useState("setup");
-  const active = xeroServices.find(s => s.id === xeroTab)!;
+  const [xeroTab, setXeroTab] = useState(0);
+  const [xeroService, setXeroService] = useState(0);
 
   return (
     <div ref={ref} className="min-h-screen overflow-x-hidden" style={{background:"#0f1923",color:"#fff"}}>
@@ -53,9 +55,11 @@ export default function MainSite() {
         .gbtn:active{transform:scale(0.97);}
         .card{transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),box-shadow 0.3s;}
         .card:hover{transform:translateY(-5px);box-shadow:0 24px 60px -12px rgba(201,168,76,0.18);}
-        .stab{transition:background 0.2s,color 0.2s,border-color 0.2s;}
+        .svc-card{transition:border-color 0.2s,box-shadow 0.2s;}
+        .svc-card:hover{border-color:rgba(201,168,76,0.5)!important;box-shadow:0 8px 30px -8px rgba(201,168,76,0.15);}
       `}</style>
 
+      {/* NAV */}
       <header className="fixed top-0 inset-x-0 z-50 border-b" style={{background:"rgba(15,25,35,0.85)",backdropFilter:"blur(16px)",borderColor:"rgba(201,168,76,0.1)"}}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={220} height={60} className="h-14 w-auto object-contain" />
@@ -68,6 +72,7 @@ export default function MainSite() {
         </div>
       </header>
 
+      {/* HERO */}
       <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{backgroundImage:"linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px)",backgroundSize:"64px 64px"}} />
         <div className="glow absolute pointer-events-none" style={{top:"-10%",left:"20%",width:"70%",height:"70%",background:"radial-gradient(ellipse,rgba(201,168,76,0.1) 0%,transparent 65%)"}} />
@@ -103,6 +108,7 @@ export default function MainSite() {
         </div>
       </section>
 
+      {/* MARQUEE */}
       <div className="py-4 border-y overflow-hidden" style={{background:"#111827",borderColor:"rgba(201,168,76,0.1)"}}>
         <div className="flex">
           <div className="mq flex items-center gap-14 whitespace-nowrap">
@@ -111,81 +117,129 @@ export default function MainSite() {
         </div>
       </div>
 
+      {/* SERVICES */}
       <section id="services" className="py-28" style={{background:"#f8f7f4"}}>
         <div className="max-w-7xl mx-auto px-6">
           <div data-r className="text-xs font-bold tracking-widest uppercase mb-4" style={{color:"#c9a84c"}}>What We Do</div>
           <h2 data-r data-d="1" className="text-4xl lg:text-5xl font-black tracking-tight mb-4" style={{color:"#0f1923"}}>The Right System,<br />Implemented Properly</h2>
           <p data-r data-d="2" className="text-gray-500 text-lg mb-20 max-w-xl">Two platforms. Deep expertise on each. No generalists, no guesswork.</p>
 
-          {/* XERO */}
-          <div data-r className="mb-20">
-            <div className="flex items-center gap-4 mb-2">
+          {/* XERO BLOCK */}
+          <div data-r className="mb-24">
+            <div className="flex items-center gap-6 mb-6">
               <Image src="/xero.svg" alt="Xero" width={90} height={36} className="h-9 w-auto object-contain" />
+              <div className="h-px flex-1" style={{background:"#e8e4dc"}} />
             </div>
-            <p className="text-gray-500 text-sm mb-1 max-w-2xl">Cloud accounting software for small and medium-sized businesses. We are certified at every level — from basic setup through to complex migrations and payroll.</p>
 
-            <div className="mt-6 rounded-2xl border overflow-hidden bg-white" style={{borderColor:"#e8e4dc"}}>
-              <div className="flex flex-wrap border-b" style={{borderColor:"#e8e4dc"}}>
-                {xeroServices.map(s => (
-                  <button
-                    key={s.id}
-                    onClick={() => setXeroTab(s.id)}
-                    className="stab px-5 py-3.5 text-sm font-semibold border-b-2 -mb-px"
-                    style={{
-                      borderBottomColor: xeroTab === s.id ? "#c9a84c" : "transparent",
-                      color: xeroTab === s.id ? "#c9a84c" : "#6b7280",
-                      background: xeroTab === s.id ? "#fdf9f0" : "transparent",
-                    }}
-                  >
-                    {s.label}
-                  </button>
-                ))}
-              </div>
-              <div className="p-8 grid md:grid-cols-2 gap-8 items-start">
+            {/* Tab strip */}
+            <div className="flex border-b mb-0" style={{borderColor:"#e8e4dc"}}>
+              {xeroTabs.map((t,i) => (
+                <button key={t} onClick={() => setXeroTab(i)}
+                  className="px-6 py-3.5 text-sm font-semibold border-b-2 -mb-px transition-colors"
+                  style={{borderBottomColor: xeroTab===i ? "#c9a84c" : "transparent", color: xeroTab===i ? "#c9a84c" : "#6b7280", background:"transparent"}}>
+                  {t}
+                </button>
+              ))}
+            </div>
+
+            {/* Tab: What is Xero */}
+            {xeroTab === 0 && (
+              <div className="rounded-b-2xl rounded-tr-2xl border border-t-0 bg-white p-8 grid md:grid-cols-2 gap-10" style={{borderColor:"#e8e4dc"}}>
                 <div>
-                  <h3 className="text-xl font-black mb-3" style={{color:"#0f1923"}}>{active.label}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6">{active.desc}</p>
-                  <a href="#contact" className="gbtn inline-block px-6 py-2.5 rounded-xl font-bold text-sm">Get in Touch</a>
+                  <h3 className="text-2xl font-black mb-4" style={{color:"#0f1923"}}>What is Xero?</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4">Xero is the leading cloud accounting platform for small and medium-sized businesses in the UK. It automates bookkeeping, bank reconciliation, invoicing, payroll and VAT — giving you real-time visibility of your finances from any device.</p>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-6">Unlike desktop software, Xero lives in the cloud — no installation, no backups, no version updates. Your accountant, bookkeeper and team all work from the same live data.</p>
+                  <a href="#contact" className="gbtn inline-block px-6 py-2.5 rounded-xl font-bold text-sm">Talk to Us About Xero</a>
                 </div>
-                <ul className="space-y-3">
-                  {active.bullets.map(b => (
-                    <li key={b} className="flex items-start gap-3 text-sm text-gray-700">
-                      <span className="mt-0.5 text-base leading-none" style={{color:"#c9a84c"}}>✓</span>
-                      {b}
-                    </li>
+                <div className="space-y-3">
+                  {["No installation required — access from any device","Real-time bank feeds and reconciliation","Automated invoicing and payment reminders","Full payroll and pension management","VAT returns submitted directly to HMRC","Add staff and control their access levels","Integrates with 1,000+ business apps"].map(b => (
+                    <div key={b} className="flex items-start gap-3 text-sm text-gray-700">
+                      <span className="mt-0.5 shrink-0" style={{color:"#13B5EA"}}>✓</span>{b}
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
-            </div>
+            )}
 
-            <div className="mt-6 rounded-2xl border p-6 bg-white" style={{borderColor:"#e8e4dc"}}>
-              <div className="text-xs font-bold tracking-widest uppercase mb-4" style={{color:"#c9a84c"}}>Xero Certifications</div>
-              <div className="flex flex-wrap gap-3">
-                {["L1 Xero Certified Associate","L2 Xero Certified Professional","L3 Xero Certified Specialist","Xero Payroll Specialist","Xero Migration Specialist"].map(x => (
-                  <span key={x} className="text-xs font-medium px-3 py-1.5 rounded-full border" style={{background:"#fdf9f0",borderColor:"rgba(201,168,76,0.3)",color:"#92742a"}}>{x}</span>
-                ))}
+            {/* Tab: Our Services */}
+            {xeroTab === 1 && (
+              <div className="border border-t-0 bg-white rounded-b-2xl rounded-tr-2xl overflow-hidden" style={{borderColor:"#e8e4dc"}}>
+                <div className="grid md:grid-cols-3 lg:grid-cols-5 border-b" style={{borderColor:"#e8e4dc"}}>
+                  {xeroServices.map((s,i) => (
+                    <button key={s.label} onClick={() => setXeroService(i)}
+                      className="px-4 py-4 text-xs font-semibold text-left border-r last:border-r-0 transition-colors"
+                      style={{borderRightColor:"#e8e4dc", background: xeroService===i ? "#fdf9f0" : "white", color: xeroService===i ? "#92742a" : "#6b7280", borderBottom: xeroService===i ? "2px solid #c9a84c" : "2px solid transparent"}}>
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+                <div className="p-8 grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-black mb-3" style={{color:"#0f1923"}}>{xeroServices[xeroService].label}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-6">{xeroServices[xeroService].desc}</p>
+                    <a href="#contact" className="gbtn inline-block px-6 py-2.5 rounded-xl font-bold text-sm">Get in Touch</a>
+                  </div>
+                  <ul className="space-y-3">
+                    {xeroServices[xeroService].bullets.map(b => (
+                      <li key={b} className="flex items-start gap-3 text-sm text-gray-700">
+                        <span className="mt-0.5 shrink-0" style={{color:"#c9a84c"}}>✓</span>{b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Tab: Qualifications */}
+            {xeroTab === 2 && (
+              <div className="rounded-b-2xl rounded-tr-2xl border border-t-0 bg-white p-8" style={{borderColor:"#e8e4dc"}}>
+                <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-2xl">Erik holds the full stack of Xero certifications — from entry-level associate through to Migration Specialist and Payroll Specialist. This means every engagement is backed by verified, up-to-date Xero expertise.</p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    {t:"L1 Xero Certified Associate", d:"Foundation-level certification covering core Xero features and workflows."},
+                    {t:"L2 Xero Certified Professional", d:"Advanced certification covering reporting, multi-currency and integrations."},
+                    {t:"L3 Xero Certified Specialist", d:"Expert-level certification for complex implementations and advisory."},
+                    {t:"Xero Payroll Specialist", d:"Certified in UK payroll, auto-enrolment, RTI and leave management."},
+                    {t:"Xero Migration Specialist", d:"Certified to migrate data from any platform into Xero accurately."},
+                  ].map(c => (
+                    <div key={c.t} className="svc-card rounded-xl p-5 border" style={{borderColor:"#e8e4dc"}}>
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3 text-sm font-black" style={{background:"rgba(19,181,234,0.1)",color:"#13B5EA"}}>✓</div>
+                      <div className="font-black text-sm mb-1" style={{color:"#0f1923"}}>{c.t}</div>
+                      <div className="text-gray-500 text-xs leading-snug">{c.d}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* D365 */}
+          {/* D365 BLOCK */}
           <div data-r data-d="1">
-            <div className="flex items-center gap-4 mb-2">
+            <div className="flex items-center gap-6 mb-6">
               <Image src="/d365.svg" alt="Microsoft Dynamics 365" width={130} height={36} className="h-9 w-auto object-contain" />
+              <div className="h-px flex-1" style={{background:"#e8e4dc"}} />
             </div>
-            <p className="text-gray-500 text-sm mb-6 max-w-2xl">ERP and CRM for growing businesses. Finance, operations and sales connected in one platform with real-time reporting.</p>
-            <div className="rounded-2xl border p-8 bg-white" style={{borderColor:"#e8e4dc"}}>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-2 h-2 rounded-full" style={{background:"#c9a84c"}} />
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400">Coming Soon</span>
+            <div className="rounded-2xl border bg-white p-8 grid md:grid-cols-2 gap-10" style={{borderColor:"#e8e4dc"}}>
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold tracking-widest uppercase mb-4" style={{background:"rgba(201,168,76,0.1)",color:"#92742a"}}>Coming Soon</div>
+                <h3 className="text-2xl font-black mb-4" style={{color:"#0f1923"}}>Microsoft Dynamics 365</h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4">ERP and CRM for growing businesses. Finance, operations and sales connected in one platform with real-time reporting across your entire organisation.</p>
+                <p className="text-gray-500 text-sm leading-relaxed mb-6">Our D365 service pages are being finalised. In the meantime, get in touch directly to discuss your requirements — implementation, finance module setup, configuration and reporting.</p>
+                <a href="#contact" className="gbtn inline-block px-6 py-2.5 rounded-xl font-bold text-sm">Enquire About D365</a>
               </div>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-xl">Our Microsoft Dynamics 365 service pages are being finalised. In the meantime, get in touch directly to discuss your D365 requirements — implementation, configuration, finance module setup and reporting.</p>
-              <a href="#contact" className="gbtn inline-block mt-6 px-6 py-2.5 rounded-xl font-bold text-sm">Enquire About D365</a>
+              <div className="space-y-3">
+                {["Finance & Operations module implementation","CRM and sales pipeline setup","Real-time financial reporting","Multi-entity and multi-currency support","Integration with Microsoft 365 ecosystem","Custom dashboards and Power BI reporting"].map(b => (
+                  <div key={b} className="flex items-start gap-3 text-sm text-gray-500">
+                    <span className="mt-0.5 shrink-0" style={{color:"#0078D4"}}>✓</span>{b}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* ABOUT */}
       <section id="about" className="py-28" style={{background:"#0f1923"}}>
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
           <div>
@@ -233,6 +287,7 @@ export default function MainSite() {
         </div>
       </section>
 
+      {/* PROCESS */}
       <section id="process" className="py-28" style={{background:"#f8f7f4"}}>
         <div className="max-w-7xl mx-auto px-6">
           <div data-r className="text-xs font-bold tracking-widest uppercase mb-4" style={{color:"#c9a84c"}}>How It Works</div>
@@ -255,6 +310,7 @@ export default function MainSite() {
         </div>
       </section>
 
+      {/* CONTACT */}
       <section id="contact" className="py-28" style={{background:"#0f1923"}}>
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
           <div>
@@ -301,6 +357,7 @@ export default function MainSite() {
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer className="py-10 border-t" style={{background:"#080e14",borderColor:"rgba(201,168,76,0.1)"}}>
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <Image src="/logo123.jpeg" alt="Winter Finance Partners" width={180} height={50} className="h-12 w-auto object-contain" />
